@@ -46,18 +46,55 @@ export default {
       const details = {
         groupName: this.groupName
       };
+      var groupRef = null;
+
       console.log(this.user.uid);
-      db.collection("users")
-        .doc(this.user.uid)
-        .collection("groups")
+      // Creating Group
+      db.collection("groups")
         .add({
           name: details.groupName,
           createAt: Firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then(console.log("Created Group"))
+        .then(doc => {
+          console.log("Created Group");
+          groupRef = doc.id;
+          // Adding Members to Group
+          db.collection("groups")
+            .doc(doc.id)
+            .collection("members")
+            .add({
+              memberID: this.user.uid,
+              memberName: this.user.displayName,
+              memberEmail: this.user.email,
+              JoinedAt: Firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+              console.log("Added Member");
+
+              // Adding Group To user Record
+              db.collection("users")
+                .doc(this.user.uid)
+                .collection("groups")
+                .add({
+                  name: details.groupName,
+                  groupID: groupRef,
+                  createAt: Firebase.firestore.FieldValue.serverTimestamp()
+                })
+                .then(console.log("Created Group"))
+                .catch(error => {
+                  console.error(error);
+                });
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        })
         .catch(error => {
           console.error(error);
         });
+
+      this.groupName = null;
+      this.$refs.groupName.focus();
     }
   }
 };
