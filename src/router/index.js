@@ -4,6 +4,9 @@ import Home from "../views/Home.vue";
 
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
+import Profile from "../views/Profile.vue";
+import Groups from "../views/Groups.vue";
+import Drinks from "../views/Drinks.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +25,21 @@ const routes = [
     path: "/register",
     name: "register",
     component: Register
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile
+  },
+  {
+    path: "/drinks",
+    name: "drinks",
+    component: Drinks
+  },
+  {
+    path: "/groups",
+    name: "groups",
+    component: Groups
   },
   // {
   //   path: "/chat/:userID/:chatID",

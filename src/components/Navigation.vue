@@ -13,6 +13,12 @@
           <router-link class="nav-item nav-link" to="/groups" v-if="user"
             >Groups</router-link
           >
+          <router-link class="nav-item nav-link" to="/drinks" v-if="user"
+            >Drinks</router-link
+          >
+          <router-link class="nav-item nav-link" to="/profile" v-if="user"
+            >Profile</router-link
+          >
           <button
             class="nav-item nav-link btn btn-link"
             v-on:click="$emit('logout')"

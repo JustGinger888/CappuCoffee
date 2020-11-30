@@ -6,7 +6,7 @@
           <div class="col-lg-8">
             <div class="card bg-light">
               <div class="card-body">
-                <h3 class="font-weight-light mb-3">Register</h3>
+                <h3 class="font-weight-light mb-3">User Details</h3>
                 <div class="form-row">
                   <div v-if="error" class="col-12 alert alert-danger px-3">
                     {{ error }}
