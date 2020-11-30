@@ -80,7 +80,7 @@ export default {
                   groupID: groupRef,
                   createAt: Firebase.firestore.FieldValue.serverTimestamp()
                 })
-                .then(console.log("Created Group"))
+                .then(console.log("Added Group to member"))
                 .catch(error => {
                   console.error(error);
                 });

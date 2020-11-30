@@ -1,3 +1,3 @@
 <template>
-  <div>Drinks</div>
+  <div>Orders</div>
 </template>

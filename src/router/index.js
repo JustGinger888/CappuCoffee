@@ -6,7 +6,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import Groups from "../views/Groups.vue";
-import Drinks from "../views/Drinks.vue";
+import Orders from "../views/Orders.vue";
 
 Vue.use(VueRouter);
 
@@ -32,9 +32,9 @@ const routes = [
     component: Profile
   },
   {
-    path: "/drinks",
-    name: "drinks",
-    component: Drinks
+    path: "/orders",
+    name: "orders",
+    component: Orders
   },
   {
     path: "/groups",

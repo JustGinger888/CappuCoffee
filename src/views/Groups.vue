@@ -2,7 +2,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col-lg-6">
-        <JoinGroup />
+        <JoinGroup :user="user" />
       </div>
       <div class="col-lg-6">
         <CreateGroup :user="user" />
@@ -11,7 +11,7 @@
     <br />
     <div class="row">
       <div class="col-12">
-        <ListGroup />
+        <ListGroup :user="user" />
       </div>
     </div>
   </div>
