@@ -28,3 +28,21 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "JoinGroup",
+  data() {
+    return {
+      groupName: this.groupName
+    };
+  },
+  methods: {
+    handleJoin() {
+      this.$emit("addGroup", this.groupName);
+      this.groupName = null;
+      this.$refs.groupName.focus();
+    }
+  }
+};
+</script>

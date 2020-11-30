@@ -4,6 +4,7 @@
     <router-view
       class="container"
       :user="user"
+      :groups="groups"
       :error="error"
       @updateprofile="updateprofile"
     />
@@ -15,7 +16,6 @@
 import Navigation from "@/components/Navigation.vue";
 // Firebase Imports
 import Firebase from "firebase";
-// eslint-disable-next-line no-unused-vars
 import db from "./db.js";
 export default {
   name: "app",
@@ -53,6 +53,21 @@ export default {
     Firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.user = user;
+
+        db.collection("users")
+          .doc(this.user.uid)
+          .collection("groups")
+          .orderBy("name")
+          .onSnapshot(snapshot => {
+            const snapData = [];
+            snapshot.forEach(doc => {
+              snapData.push({
+                id: doc.id,
+                name: doc.data().name
+              });
+            });
+            this.groups = snapData;
+          });
       }
     });
   },

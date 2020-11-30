@@ -5,7 +5,7 @@
         <JoinGroup />
       </div>
       <div class="col-lg-6">
-        <CreateGroup />
+        <CreateGroup :user="user" />
       </div>
     </div>
     <br />
@@ -35,12 +35,8 @@ export default {
     JoinGroup,
     ListGroup
   },
-  methods: {
-    handleAdd() {
-      this.$emit("addGroup", this.groupName);
-      this.groupName = null;
-      this.$refs.groupName.focus();
-    }
+  mounted() {
+    console.log(this.user);
   }
 };
 </script>

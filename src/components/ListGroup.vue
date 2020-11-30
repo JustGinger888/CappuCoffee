@@ -47,6 +47,8 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
   name: "ListGroup",
+  props: ["user", "groups"],
+
   components: {
     FontAwesomeIcon
   }
