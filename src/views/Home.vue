@@ -46,7 +46,7 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
   name: "home",
-  props: ["user"],
+  props: ["user", "error"],
   components: {
     FontAwesomeIcon
   }

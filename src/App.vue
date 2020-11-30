@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <Navigation :user="user" @logout="logout" />
-    <router-view class="container" :user="user" />
+    <router-view
+      class="container"
+      :user="user"
+      :error="error"
+      @updateprofile="updateprofile"
+    />
   </div>
 </template>
 
@@ -30,6 +35,16 @@ export default {
           this.$router.push("login");
         })
         .catch(err => {
+          console.error(err);
+        });
+    },
+    updateprofile(payload) {
+      db.collection("users")
+        .doc(this.user.uid)
+        .update({ displayName: payload })
+        .then(this.user.updateProfile({ displayName: payload }))
+        .catch(err => {
+          this.error = err.message;
           console.error(err);
         });
     }
