@@ -10,11 +10,14 @@
           <router-link class="nav-item nav-link" to="/register" v-if="!user"
             >Register</router-link
           >
+          <router-link class="nav-item nav-link" to="/home" v-if="user"
+            >Home</router-link
+          >
           <router-link class="nav-item nav-link" to="/groups" v-if="user"
             >Groups</router-link
           >
-          <router-link class="nav-item nav-link" to="/drinks" v-if="user"
-            >Drinks</router-link
+          <router-link class="nav-item nav-link" to="/orders" v-if="user"
+            >Orders</router-link
           >
           <router-link class="nav-item nav-link" to="/profile" v-if="user"
             >Profile</router-link

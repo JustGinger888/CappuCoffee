@@ -41,11 +41,11 @@ const routes = [
     name: "groups",
     component: Groups
   },
-  // {
-  //   path: "/chat/:userID/:chatID",
-  //   name: "Chat",
-  //   component: Chat
-  // },
+  {
+    path: "/chat/:userID/:chatID",
+    name: "Chat",
+    component: Chat
+  },
   {
     path: "/*",
     redirect: "/"
