@@ -95,8 +95,8 @@
 
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
-                  title="Chat"
-                  :to="'/chat/' + user.uid + '/' + item.id"
+                  title="GroupOrder"
+                  :to="'/groupOrder/' + user.uid + '/' + item.id"
                 >
                   <font-awesome-icon icon="link"></font-awesome-icon>
                 </router-link>

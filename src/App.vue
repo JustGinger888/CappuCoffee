@@ -66,9 +66,7 @@ export default {
                 name: doc.data().name
               });
             });
-            console.log(snapData);
             this.groups = snapData;
-            console.log(this.groups);
           });
       }
     });

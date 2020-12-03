@@ -7,6 +7,8 @@ import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import Groups from "../views/Groups.vue";
 import Orders from "../views/Orders.vue";
+import GroupOrder from "../views/Grouporder.vue";
+import Members from "../views/Members.vue";
 
 Vue.use(VueRouter);
 
@@ -42,9 +44,14 @@ const routes = [
     component: Groups
   },
   {
-    path: "/chat/:userID/:chatID",
-    name: "Chat",
-    component: Chat
+    path: "/groupOrder/:userID/:userGroupID",
+    name: "GroupOrder",
+    component: GroupOrder
+  },
+  {
+    path: "/members/:userID/:userGroupID",
+    name: "Members",
+    component: Members
   },
   {
     path: "/*",
