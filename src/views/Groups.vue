@@ -158,7 +158,8 @@ export default {
           db.collection("groups")
             .doc(doc.id)
             .collection("members")
-            .add({
+            .doc(this.user.uid)
+            .set({
               memberID: this.user.uid,
               memberName: this.user.displayName,
               memberEmail: this.user.email,
@@ -171,7 +172,8 @@ export default {
               db.collection("users")
                 .doc(this.user.uid)
                 .collection("groups")
-                .add({
+                .doc(groupRef)
+                .set({
                   name: details.createGroupName,
                   groupID: groupRef,
                   createAt: Firebase.firestore.FieldValue.serverTimestamp()
@@ -236,6 +238,14 @@ export default {
       this.$refs.groupName.focus();
     },
     deletegroup(id) {
+      console.log(id);
+      console.log(this.user.uid);
+      db.collection("groups")
+        .doc(id)
+        .collection("members")
+        .doc(this.user.id)
+        .delete();
+
       db.collection("users")
         .doc(this.user.uid)
         .collection("groups")
