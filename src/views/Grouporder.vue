@@ -3,9 +3,27 @@
     <div class="card mt-4">
       <h5 class="card-header">{{ userGroupID }} Drink List</h5>
       <div class="card-body">
-        <button type="button" class="btn btn-success mr-3">Add Coffee</button>
-        <button type="button" class="btn btn-danger mr-3">Remove Coffee</button>
-        <button type="button" class="btn btn-warning mr-3">Clear List</button>
+        <button
+          type="button"
+          class="btn btn-success mr-3"
+          v-on:click.prevent="handleCreate"
+        >
+          Add Coffee
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger mr-3"
+          v-on:click.prevent="handleDelete"
+        >
+          Remove Coffee
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning mr-3"
+          v-on:click.prevent="handleClear"
+        >
+          Clear List
+        </button>
       </div>
       <div class="form-group m-4">
         <label for="formControlRange">Strength</label>
@@ -39,7 +57,7 @@
 </template>
 
 <script>
-//import Firebase from "firebase";
+import Firebase from "firebase";
 import db from "../db.js";
 
 export default {
@@ -56,7 +74,16 @@ export default {
     };
   },
   methods: {
-    handleCreate() {}
+    handleCreate() {
+      db.collection("groups")
+        .doc(this.userGroupID)
+        .collection("order")
+        .doc(this.userID)
+        .set({
+          CreatedAt: Firebase.firestore.FieldValue.serverTimestamp(),
+          orderName: this.userID
+        });
+    }
   },
   mounted() {
     console.log(this.userID);
@@ -69,9 +96,9 @@ export default {
         const snapData = [];
         snapshot.forEach(doc => {
           snapData.push({
-            id: doc.data().orderId,
-            email: doc.data().orderStrength,
-            displayName: doc.data().orderSugars
+            displayName: doc.data().orderName,
+            displayStrength: doc.data().orderStrength,
+            displaySugars: doc.data().orderSugars
           });
         });
         this.orders = snapData;
