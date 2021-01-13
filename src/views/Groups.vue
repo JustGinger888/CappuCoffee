@@ -95,18 +95,18 @@
 
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
-                  title="GroupOrder"
-                  :to="'/groupOrder/' + user.uid + '/' + item.id"
+                  title="Members"
+                  :to="'/members/' + user.uid + '/' + item.id"
                 >
-                  <font-awesome-icon icon="link"></font-awesome-icon>
+                  <font-awesome-icon icon="list-ul"></font-awesome-icon> Members
                 </router-link>
 
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
-                  title="Members"
-                  :to="'/members/' + user.uid + '/' + item.id"
+                  title="GroupOrder"
+                  :to="'/groupOrder/' + user.uid + '/' + item.id"
                 >
-                  <font-awesome-icon icon="list-ul"></font-awesome-icon>
+                  <font-awesome-icon icon="link"></font-awesome-icon> View Order
                 </router-link>
               </section>
 
@@ -149,6 +149,7 @@ export default {
       db.collection("groups")
         .add({
           name: details.createGroupName,
+          orderStatus: "Inactive",
           createAt: Firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(doc => {
@@ -206,7 +207,8 @@ export default {
           db.collection("groups")
             .doc(doc.id)
             .collection("members")
-            .add({
+            .doc(this.user.uid)
+            .set({
               memberID: this.user.uid,
               memberName: this.user.displayName,
               memberEmail: this.user.email,
@@ -221,7 +223,8 @@ export default {
           db.collection("users")
             .doc(this.user.uid)
             .collection("groups")
-            .add({
+            .doc(details.groupID)
+            .set({
               name: doc.data().name,
               groupID: doc.id,
               createAt: Firebase.firestore.FieldValue.serverTimestamp()
@@ -240,12 +243,6 @@ export default {
     deletegroup(id) {
       console.log(id);
       console.log(this.user.uid);
-      db.collection("groups")
-        .doc(id)
-        .collection("members")
-        .doc(this.user.id)
-        .delete();
-
       db.collection("users")
         .doc(this.user.uid)
         .collection("groups")
