@@ -52,3 +52,7 @@ database you may want to include an entity relationship diagram.
 Identify in what ways your application is secure and scalable.
 Bring the document to a close by tying together the process, and provide me with a brief reflective account of
 the entire project.
+
+Project Console: https://console.firebase.google.com/project/cappucoffee-40101/overview
+Hosting URL: https://cappucoffee-40101.web.app
+https://github.com/JustGinger888/CappuCoffeeProject

@@ -104,9 +104,11 @@
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
                   title="GroupOrder"
+                  :user="user"
+                  :groupName="item.name"
                   :to="'/groupOrder/' + user.uid + '/' + item.id"
                 >
-                  <font-awesome-icon icon="link"></font-awesome-icon> View Order
+                  <font-awesome-icon icon="link"></font-awesome-icon>Open Group
                 </router-link>
               </section>
 
